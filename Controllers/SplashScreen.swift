@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SplashScreen: UIViewController {
+
+final class SplashScreen: UIViewController {
+    var timer = Timer()
     
     private let logo: UIImageView = {
         let logo = UIImageView()
@@ -30,6 +32,7 @@ class SplashScreen: UIViewController {
         
         return textLaunchScreen
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -57,8 +60,6 @@ class SplashScreen: UIViewController {
         ])
     }
     
-    var timer = Timer()
-    
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(openHabitsTabBar), userInfo: nil, repeats: false)
     }
@@ -69,3 +70,4 @@ class SplashScreen: UIViewController {
         navigationController?.pushViewController(twoWindows, animated: true)
     }
 }
+

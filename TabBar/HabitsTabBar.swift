@@ -8,17 +8,18 @@
 import UIKit
 
 class HabitsTabBar: UITabBarController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let habitsTabBar = HabitsView()
-        let infoTabBar = InfoView()
+        let habitsTabBar = UINavigationController(rootViewController: HabitsView())
+        let infoTabBar = UINavigationController(rootViewController: InfoView())
         let appearance = UITabBarAppearance()
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.setViewControllers([habitsTabBar, infoTabBar], animated: false)
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
         tabBar.standardAppearance = appearance
-        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+       // tabBar.scrollEdgeAppearance = tabBar.standardAppearance
     
         guard let items = self.tabBar.items else { return }
         let iconsTabBar = ["rectangle.grid.1x2.fill", "info.circle.fill"]
