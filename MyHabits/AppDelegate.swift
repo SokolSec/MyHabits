@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
-        
-        let startWindow = SplashScreen()
+    
+        let startWindow = LaunchScreen()
         let _startWindow = UINavigationController(rootViewController: startWindow)
         
         tabBarController.viewControllers = [_startWindow]

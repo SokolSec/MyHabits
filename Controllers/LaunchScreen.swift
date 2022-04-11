@@ -8,7 +8,8 @@
 import UIKit
 
 
-final class SplashScreen: UIViewController {
+final class LaunchScreen: UIViewController {
+    
     var timer = Timer()
     
     private let logo: UIImageView = {
@@ -17,7 +18,6 @@ final class SplashScreen: UIViewController {
         logo.image = UIImage(named: "LaunchScreen")
         logo.layer.cornerRadius = 20
         logo.clipsToBounds = true
-        
         return logo
     }()
     
@@ -29,7 +29,6 @@ final class SplashScreen: UIViewController {
         textLaunchScreen.text = "MyHabits"
         textLaunchScreen.font = UIFont.systemFont(ofSize: 23, weight: .medium)
         textLaunchScreen.clipsToBounds = true
-        
         return textLaunchScreen
     }()
     

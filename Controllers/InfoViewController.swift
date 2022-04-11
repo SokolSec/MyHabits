@@ -1,5 +1,5 @@
 //
-//  InfoView.swift
+//  InfoViewController.swift
 //  MyHabits
 //
 //  Created by Даниил Сокол on 08.04.2022.
@@ -7,11 +7,10 @@
 
 import UIKit
 
-class InfoView: UIViewController {
+class InfoViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -21,7 +20,6 @@ class InfoView: UIViewController {
         textInfoHeading.translatesAutoresizingMaskIntoConstraints = false
         textInfoHeading.text = "Привычка за 21 день"
         textInfoHeading.font = UIFont.boldSystemFont(ofSize: 22)
-        
         return textInfoHeading
     }()
     
@@ -44,6 +42,12 @@ class InfoView: UIViewController {
         constraintsTextInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+    }
+    
     func constraintsTextInfo () {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -53,7 +57,7 @@ class InfoView: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            textInfoHeading.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
+            textInfoHeading.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             textInfoHeading.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             textInfoHeading.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -12)
         ])
@@ -62,7 +66,7 @@ class InfoView: UIViewController {
             textInfoMain.topAnchor.constraint(equalTo: textInfoHeading.bottomAnchor, constant: 12),
             textInfoMain.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             textInfoMain.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-			textInfoMain.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            textInfoMain.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
     }
 }
