@@ -35,7 +35,7 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //title = "Информация"
+        title = "Информация"
        // tabBarItem.title = "Информация"
         
         view.addSubview(scrollView)
