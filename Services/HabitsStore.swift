@@ -145,7 +145,11 @@ public final class HabitsStore {
     /// Сохраняет все изменения в привычках в UserDefaults.
     public func save() {
         do {
+            //JSONDecoder -
+            //Массив привычек -> бинарник
             let data = try encoder.encode(habits)
+            
+            //Сохраняем бинарник
             userDefaults.setValue(data, forKey: "habits")
         }
         catch {
@@ -155,7 +159,8 @@ public final class HabitsStore {
     
     /// Добавляет текущую дату в trackDates для переданной привычки.
     /// - Parameter habit: Привычка, в которую добавится новая дата.
-    public func track(_ habit: Habit) {
+    public func addHabit(_ habit: Habit) {
+        
         habit.trackDates.append(.init())
         save()
     }

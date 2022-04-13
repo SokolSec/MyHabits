@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitTableViewHeader: UITableViewHeaderFooterView {
+class HabitTableHeader: UITableViewHeaderFooterView {
     
     let labelActive: UILabel = {
         let labelActive = UILabel()

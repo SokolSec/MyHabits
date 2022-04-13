@@ -40,8 +40,8 @@ class HabitDetailsViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(HabitTableViewCell.self, forCellReuseIdentifier: "habitViewCell")
-        tableView.register(HabitTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "habitHeaderCell")
+        tableView.register(HabitTableCell.self, forCellReuseIdentifier: "habitViewCell")
+        tableView.register(HabitTableHeader.self, forHeaderFooterViewReuseIdentifier: "habitHeaderCell")
         
         initialLayout()
     }
@@ -81,14 +81,14 @@ extension HabitDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell =  tableView.dequeueReusableCell(withIdentifier: "habitViewCell", for: indexPath) as? HabitTableViewCell else { return UITableViewCell() }
+        guard let cell =  tableView.dequeueReusableCell(withIdentifier: "habitViewCell", for: indexPath) as? HabitTableCell else { return UITableViewCell() }
         let date = HabitsStore.shared.dates[indexPath.row]
         cell.initialEdit(date: date, check: HabitsStore.shared.habit(habit, isTrackedIn: date))
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "habitHeaderCell") as? HabitTableViewHeader else { return nil }
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "habitHeaderCell") as? HabitTableHeader else { return nil }
         return view
     }
     

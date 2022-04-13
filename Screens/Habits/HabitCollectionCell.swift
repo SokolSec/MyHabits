@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitCollectionViewCell: UICollectionViewCell {
+class HabitCollectionCell: UICollectionViewCell {
     
     var habit: Habit?
     
@@ -42,7 +42,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         checkMark.translatesAutoresizingMaskIntoConstraints = false
         checkMark.layer.cornerRadius = 19
         checkMark.setTitleColor(.white, for: .normal)
-        checkMark.addTarget(self, action: #selector(tapCheck), for: .touchUpInside)
+        checkMark.addTarget(self, action: #selector(tapCheckAction), for: .touchUpInside)
         return checkMark
     }()
     
@@ -53,7 +53,14 @@ class HabitCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(nameLabel, dateLabel, countLabel, checkMark)
     }
     
-    func initialCell(habit: Habit) {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    //MARK: - Public
+    
+    func configure(habit: Habit) {
         self.habit = habit
         nameLabel.text = habit.name
         nameLabel.textColor = habit.color
@@ -73,14 +80,10 @@ class HabitCollectionViewCell: UICollectionViewCell {
             checkMark.setTitle("", for: .normal)
             checkMark.isUserInteractionEnabled = true
         }
-        initialLayout()
+        setupAllConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initialLayout() {
+    func setupAllConstraints() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -100,9 +103,11 @@ class HabitCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    @objc func tapCheck() {
+    //MARK: - Actions
+    @objc func tapCheckAction() {
         if let trackHabit = habit {
-            HabitsStore.shared.track(trackHabit)
+            HabitsStore.shared.addHabit(trackHabit)
+            
             HabitsViewController.collectionView.reloadData()
         }
     }

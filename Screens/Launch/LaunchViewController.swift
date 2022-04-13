@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class LaunchScreen: UIViewController {
+final class LaunchViewController: UIViewController {
     
     var timer = Timer()
     
@@ -64,9 +64,19 @@ final class LaunchScreen: UIViewController {
     }
     
     @objc func openHabitsTabBar() {
-        let twoWindows = HabitsTabBar()
-        twoWindows.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(twoWindows, animated: true)
+        let habitsTabBarController = MainTabBarController()
+        
+        let habitsViewController = HabitsViewController()
+        let infoViewController = InfoViewController()
+        
+        let habitsTabBar = UINavigationController(rootViewController: habitsViewController)
+        
+        let infoTabBar = UINavigationController(rootViewController: infoViewController)
+        
+        //habitsTabBarController.viewControllers = [habitsTabBar, infoTabBar]
+        
+        habitsTabBarController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(habitsTabBarController, animated: true)
     }
 }
 

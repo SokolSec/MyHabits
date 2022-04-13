@@ -7,8 +7,9 @@
 
 import UIKit
 
-class HabitProgressViewCell: UICollectionViewCell {
+final class ProgressViewCollectionCell: UICollectionViewCell {
     
+    //MARK: - Public properties
     lazy var progressLabel: UILabel = {
         let progressLabel = UILabel()
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +31,7 @@ class HabitProgressViewCell: UICollectionViewCell {
         return percentLabel
     }()
     
-    lazy var progressBar: UIProgressView = {
+    lazy var progressView: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .bar )
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBar.trackTintColor = .systemGray2
@@ -43,11 +44,12 @@ class HabitProgressViewCell: UICollectionViewCell {
         return progressBar
     }()
     
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 14
-        contentView.addSubviews(progressLabel, percentLabel, progressBar)
+        contentView.addSubviews(progressLabel, percentLabel, progressView)
     }
     
     required init?(coder: NSCoder) {
@@ -55,7 +57,7 @@ class HabitProgressViewCell: UICollectionViewCell {
     }
     
     func initialProgress() {
-        progressBar.progress = HabitsStore.shared.todayProgress
+        progressView.progress = HabitsStore.shared.todayProgress
         percentLabel.text = String(Int(HabitsStore.shared.todayProgress * 100)) + "%"
         initialLayout()
     }
@@ -67,11 +69,11 @@ class HabitProgressViewCell: UICollectionViewCell {
             percentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             percentLabel.leadingAnchor.constraint(equalTo: progressLabel.trailingAnchor, constant: 16),
             percentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            progressBar.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 8),
-            progressBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            progressBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            progressBar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            progressBar.heightAnchor.constraint(equalToConstant: 7)
+            progressView.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 8),
+            progressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            progressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            progressView.heightAnchor.constraint(equalToConstant: 7)
         ])
     }
 }
