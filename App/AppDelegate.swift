@@ -12,30 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        print("1")
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        print("2")
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("3")
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        print("4")
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print("5")
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        print("6")
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let tabBarController = UITabBarController()
@@ -48,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = startWindowNavigationController
         window?.makeKeyAndVisible()
     
-       
         return true
     }
     
